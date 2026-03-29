@@ -269,115 +269,92 @@ async def seed_data():
     if djs_count > 0:
         return {"message": "Dados já existem", "djs": djs_count}
     
-    # Seed DJs
+    # Seed DJs - ARTISTAS REAIS
     djs_data = [
         {
             "id": str(uuid.uuid4()),
-            "nome": "DJ Vilão da Cachorrada",
-            "slug": "dj-vilao-cachorrada",
+            "nome": "TehuTi Music",
+            "slug": "tehuti-music",
             "foto": "https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?auto=format&fit=crop&w=400&q=80",
-            "bio": "O rei do eletrofunk pesado 150 BPM. Especialista em cachorrada eletrônica e mandelão que faz tremer as caixas de som. Sets explosivos que dominam as raves de SP a RJ.",
-            "instagram": "@vilao_cachorrada",
-            "soundcloud": "vilao-cachorrada",
-            "keywords": ["cachorrada eletrônica", "eletrofunk pesado", "funk 150 bpm", "dj cachorrada"],
-            "votos_count": 156,
+            "bio": "O mestre do eletrofunk que está dominando as pistas! Com mais de 470 seguidores no SoundCloud e sets explosivos como 'Baile do Tehuti 2.0' com mais de 1.000 plays, TehuTi Music traz energia pura em cada batida. Seus sets são reconhecidos pelos fãs como 'seleção das brabas' - é o DJ que faz até o avô dançar!",
+            "instagram": "tehuti_music",
+            "soundcloud": "thiago-feijao",
+            "keywords": ["cachorrada eletrônica", "eletrofunk pesado", "baile do tehuti", "dj cachorrada", "set eletrofunk"],
+            "votos_count": 0,
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
             "id": str(uuid.uuid4()),
-            "nome": "DJ Trovão do Mandelão",
-            "slug": "dj-trovao-mandelon",
+            "nome": "K-rol",
+            "slug": "k-rol-music",
             "foto": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&q=80",
-            "bio": "Mestre do funk deboxe e mandelão cachorrada. Criador de sets que são pura putaria eletrofunk. Conhecido por transformar qualquer pista em revoada.",
-            "instagram": "@trovao_mandelon",
-            "soundcloud": "trovao-mandelon",
-            "keywords": ["funk deboxe cachorrada", "mandelão", "putaria eletrofunk", "funk rave"],
-            "votos_count": 143,
+            "bio": "A braba da pista que não entrega só música, entrega energia! Com quase 5.000 plays no set 'K-ROL @ 001 Call The Police', K-rol é referência no Tech House com alma brasileira. Cada faixa carrega sua essência - transições pensadas, energia colocada com intenção. É ritmo pra mexer o corpo e marcar momentos!",
+            "instagram": "k_rolmusic",
+            "soundcloud": "krolmusic",
+            "keywords": ["tech house", "eletronica", "k-rol music", "set 2025", "call the police"],
+            "votos_count": 0,
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
             "id": str(uuid.uuid4()),
-            "nome": "DJ Piranha Eletrônica",
-            "slug": "dj-piranha-eletronica",
+            "nome": "Jhonny Mixer",
+            "slug": "jhonny-mixer",
             "foto": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=400&q=80",
-            "bio": "A rainha do proibidão eletrônico. Seus sets de funk rave brasileiro são referência no cenário. Pioneira do som pra revoada com batidas que não deixam ninguém parado.",
-            "instagram": "@piranha_eletronica",
-            "soundcloud": "piranha-eletronica",
-            "keywords": ["proibidão eletrônico", "funk rave brasileiro", "som pra revoada", "playlist eletrofunk"],
-            "votos_count": 128,
-            "created_at": datetime.now(timezone.utc).isoformat()
-        },
-        {
-            "id": str(uuid.uuid4()),
-            "nome": "DJ Baile do Futuro",
-            "slug": "dj-baile-futuro",
-            "foto": "https://images.unsplash.com/photo-1526218626217-dc65a29bb444?auto=format&fit=crop&w=400&q=80",
-            "bio": "Inovador do funk 2025 atualizado. Mistura elementos de EDM com a essência da cachorrada forte. Seus remixes de funk eletrônico são hits nas plataformas.",
-            "instagram": "@baile_futuro",
-            "spotify": "baile-futuro",
-            "keywords": ["funk 2025 atualizado", "cachorrada forte", "remix funk eletrônico", "set funk pesado"],
-            "votos_count": 97,
-            "created_at": datetime.now(timezone.utc).isoformat()
-        },
-        {
-            "id": str(uuid.uuid4()),
-            "nome": "MC Paredão Nuclear",
-            "slug": "mc-paredao-nuclear",
-            "foto": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=400&q=80",
-            "bio": "O cara que revolucionou o modo cachorrada. Voz marcante e presença de palco que incendeia qualquer baile. Parceiro dos maiores DJs do eletrofunk.",
-            "instagram": "@paredao_nuclear",
-            "keywords": ["modo cachorrada", "funk cachorrada pesada", "eletrofunk cachorrada"],
-            "votos_count": 84,
+            "bio": "O cara da cachorrada sem mimimi! Com mais de 3.400 plays no set 'Cachorrada 02 Sem Mimimi', Jhonny Mixer é pura marreta do Thor nas pistas. Sets que são sonzeira monstruosa - gravados com pressão mas que a galera vai gostar. Eletrofunk raiz que não tem erro!",
+            "instagram": "jhonny_mixer__oficial",
+            "soundcloud": "jhonny-dj-681789610",
+            "keywords": ["eletrofunk", "cachorrada", "sem mimimi", "jhonny mixer", "marreta"],
+            "votos_count": 0,
             "created_at": datetime.now(timezone.utc).isoformat()
         }
     ]
     
     await db.djs.insert_many(djs_data)
     
-    # Seed Eventos
+    # Seed Eventos - EVENTOS REAIS
     eventos_data = [
         {
             "id": str(uuid.uuid4()),
-            "titulo": "MEGA CACHORRADA ELETRÔNICA 2025",
+            "titulo": "BAILE DA CACHORRADA ELETRÔNICA",
             "data": "15/02/2025",
             "horario": "23:00",
-            "local": "Arena Eletrofunk",
-            "cidade": "São Paulo",
-            "estado": "SP",
-            "descricao": "O maior evento de eletrofunk do Brasil! Line-up com os melhores DJs da cachorrada.",
-            "preco": "R$ 80 - R$ 150",
-            "foto": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
-            "whatsapp_mensagem": "Olá! Quero comprar ingresso para MEGA CACHORRADA ELETRÔNICA 2025",
-            "ativo": True,
-            "created_at": datetime.now(timezone.utc).isoformat()
-        },
-        {
-            "id": str(uuid.uuid4()),
-            "titulo": "BAILE DO MANDELÃO - Edição Rio",
-            "data": "22/02/2025",
-            "horario": "22:00",
-            "local": "Espaço Revoada",
+            "local": "A definir",
             "cidade": "Rio de Janeiro",
             "estado": "RJ",
-            "descricao": "A festa que não deixa ninguém parado! Funk deboxe e cachorrada a noite toda.",
-            "preco": "R$ 60 - R$ 120",
-            "foto": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
-            "whatsapp_mensagem": "Olá! Quero comprar ingresso para BAILE DO MANDELÃO - Rio",
+            "descricao": "O baile que vai reunir os maiores DJs da cachorrada eletrônica! TehuTi, K-rol e Jhonny Mixer juntos em uma noite inesquecível de eletrofunk pesado.",
+            "preco": "PIX 124.914.837-50",
+            "foto": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
+            "whatsapp_mensagem": "Olá! Quero participar do BAILE DA CACHORRADA ELETRÔNICA! Vim pelo site eletrofunkcachorrada.com.br",
             "ativo": True,
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
             "id": str(uuid.uuid4()),
-            "titulo": "RAVE PROIBIDÃO ELETRÔNICO",
-            "data": "08/03/2025",
+            "titulo": "CALL THE POLICE - K-ROL NIGHT",
+            "data": "01/03/2025",
+            "horario": "22:00",
+            "local": "A definir",
+            "cidade": "São Paulo",
+            "estado": "SP",
+            "descricao": "Uma noite especial com K-rol apresentando o set completo 'Call The Police'. Tech House com alma brasileira que vai fazer todo mundo chamar a polícia!",
+            "preco": "PIX 124.914.837-50",
+            "foto": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
+            "whatsapp_mensagem": "Olá! Quero participar da CALL THE POLICE - K-ROL NIGHT! Vim pelo site eletrofunkcachorrada.com.br",
+            "ativo": True,
+            "created_at": datetime.now(timezone.utc).isoformat()
+        },
+        {
+            "id": str(uuid.uuid4()),
+            "titulo": "BAILE DO TEHUTI 3.0",
+            "data": "15/03/2025",
             "horario": "00:00",
-            "local": "Galpão Underground",
-            "cidade": "Belo Horizonte",
-            "estado": "MG",
-            "descricao": "12 horas de puro eletrofunk pesado. Open bar e área VIP disponíveis.",
-            "preco": "R$ 100 - R$ 250",
+            "local": "A definir",
+            "cidade": "Rio de Janeiro",
+            "estado": "RJ",
+            "descricao": "TehuTi Music apresenta a terceira edição do baile que é sucesso absoluto! Prepara que vem seleção das brabas - o set que faz até o avô dançar!",
+            "preco": "PIX 124.914.837-50",
             "foto": "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=800&q=80",
-            "whatsapp_mensagem": "Olá! Quero comprar ingresso para RAVE PROIBIDÃO ELETRÔNICO",
+            "whatsapp_mensagem": "Olá! Quero participar do BAILE DO TEHUTI 3.0! Vim pelo site eletrofunkcachorrada.com.br",
             "ativo": True,
             "created_at": datetime.now(timezone.utc).isoformat()
         }
@@ -385,59 +362,59 @@ async def seed_data():
     
     await db.eventos.insert_many(eventos_data)
     
-    # Seed Artigos
+    # Seed Artigos - CONTEÚDO SEO REAL
     artigos_data = [
         {
             "id": str(uuid.uuid4()),
-            "titulo": "O que é Cachorrada Eletrônica? Guia Completo 2025",
-            "slug": "o-que-e-cachorrada-eletronica",
-            "resumo": "Descubra tudo sobre o gênero que está dominando as raves brasileiras. História, principais DJs e onde encontrar os melhores sets.",
-            "conteudo": "A cachorrada eletrônica é a fusão perfeita entre o funk carioca tradicional e as batidas pesadas da música eletrônica...",
-            "keywords": ["cachorrada eletrônica", "eletrofunk", "funk rave brasileiro"],
+            "titulo": "TehuTi Music: O DJ que Faz Até o Avô Dançar",
+            "slug": "tehuti-music-dj-eletrofunk",
+            "resumo": "Conheça TehuTi Music, o mestre do eletrofunk que está conquistando as pistas com o Baile do Tehuti 2.0. Mais de 1.000 plays e uma legião de fãs!",
+            "conteudo": "TehuTi Music está revolucionando a cena do eletrofunk brasileiro. Com sets que selecionam 'só as brabas', ele conquistou mais de 470 seguidores no SoundCloud...",
+            "keywords": ["tehuti music", "baile do tehuti", "eletrofunk", "cachorrada eletrônica"],
             "imagem": "https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?auto=format&fit=crop&w=800&q=80",
             "publicado": True,
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
             "id": str(uuid.uuid4()),
-            "titulo": "Top 10 Sets de Funk Pesado 150 BPM para sua Playlist",
-            "slug": "top-10-sets-funk-pesado-150-bpm",
-            "resumo": "Os melhores sets de eletrofunk pesado selecionados para você. Batidas aceleradas e cachorrada pura.",
-            "conteudo": "Se você está procurando por sets que fazem o chão tremer, veio ao lugar certo...",
-            "keywords": ["funk pesado 150 bpm", "set funk pesado", "playlist eletrofunk"],
+            "titulo": "K-rol: A Braba do Tech House Brasileiro",
+            "slug": "k-rol-tech-house-brasileiro",
+            "resumo": "Descubra K-rol, a DJ que entrega energia pura em forma de batida. Set 'Call The Police' com quase 5.000 plays mostra porque ela é referência.",
+            "conteudo": "K-rol não é só uma DJ - ela é uma força da natureza nas pistas. Com o set 'K-ROL @ 001 Call The Police', ela provou que Tech House com alma brasileira existe...",
+            "keywords": ["k-rol music", "tech house", "call the police", "dj feminina"],
             "imagem": "https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?auto=format&fit=crop&w=800&q=80",
             "publicado": True,
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
             "id": str(uuid.uuid4()),
-            "titulo": "Funk Deboxe Cachorrada: A Nova Onda das Raves",
-            "slug": "funk-deboxe-cachorrada-nova-onda",
-            "resumo": "Entenda por que o funk deboxe cachorrada está conquistando as pistas de dança do Brasil inteiro.",
-            "conteudo": "O deboxe misturado com a cachorrada criou uma nova vertente que está revolucionando...",
-            "keywords": ["funk deboxe cachorrada", "funk mandelão cachorrada", "funk rave"],
+            "titulo": "Jhonny Mixer: Cachorrada Sem Mimimi",
+            "slug": "jhonny-mixer-cachorrada-sem-mimimi",
+            "resumo": "Jhonny Mixer é o cara da marreta! Com mais de 3.400 plays no set 'Cachorrada 02 Sem Mimimi', ele prova que eletrofunk é pra quem aguenta.",
+            "conteudo": "Quando Jhonny Mixer solta um set, a pista treme. O 'Cachorrada 02 Sem Mimimi' virou referência no cenário por uma razão: é marreta do Thor do início ao fim...",
+            "keywords": ["jhonny mixer", "cachorrada", "eletrofunk", "sem mimimi", "marreta"],
             "imagem": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=800&q=80",
             "publicado": True,
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
             "id": str(uuid.uuid4()),
-            "titulo": "Como Montar a Playlist Perfeita de Eletrofunk",
-            "slug": "como-montar-playlist-eletrofunk",
-            "resumo": "Dicas para criar a melhor seleção de músicas para seu rolê ou festa particular.",
-            "conteudo": "Montar uma playlist de eletrofunk que funcione requer entender a progressão das batidas...",
-            "keywords": ["playlist eletrofunk", "remix funk eletrônico", "funk 2025 atualizado"],
+            "titulo": "O que é Cachorrada Eletrônica? Guia Completo 2025",
+            "slug": "o-que-e-cachorrada-eletronica",
+            "resumo": "Entenda o gênero que está dominando as raves brasileiras. Da origem ao som atual com TehuTi, K-rol e Jhonny Mixer.",
+            "conteudo": "A cachorrada eletrônica é a fusão do funk carioca com batidas eletrônicas pesadas. Artistas como TehuTi Music, K-rol e Jhonny Mixer são os grandes nomes...",
+            "keywords": ["cachorrada eletrônica", "eletrofunk", "funk rave brasileiro", "o que é cachorrada"],
             "imagem": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80",
             "publicado": True,
             "created_at": datetime.now(timezone.utc).isoformat()
         },
         {
             "id": str(uuid.uuid4()),
-            "titulo": "Som pra Revoada: O Guia do Proibidão Eletrônico",
-            "slug": "som-pra-revoada-proibidao-eletronico",
-            "resumo": "Tudo que você precisa saber sobre o som que faz a galera subir nas caixas.",
-            "conteudo": "O proibidão eletrônico é a expressão máxima da liberdade musical no funk brasileiro...",
-            "keywords": ["som pra revoada", "proibidão eletrônico", "cachorrada forte"],
+            "titulo": "Melhores Sets de Eletrofunk 2025 para sua Playlist",
+            "slug": "melhores-sets-eletrofunk-2025",
+            "resumo": "Os sets que estão bombando: Baile do Tehuti 2.0, K-ROL @ 001 Call The Police e Cachorrada 02 Sem Mimimi. Ouça agora!",
+            "conteudo": "Se você quer montar a playlist definitiva de eletrofunk, esses são os sets obrigatórios: 1. Baile do Tehuti 2.0 - TehuTi Music (1.080+ plays)...",
+            "keywords": ["playlist eletrofunk", "sets 2025", "baile do tehuti", "call the police", "cachorrada"],
             "imagem": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
             "publicado": True,
             "created_at": datetime.now(timezone.utc).isoformat()
