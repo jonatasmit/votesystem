@@ -159,6 +159,65 @@ async def root():
     return {"message": "Eletrofunk Cachorrada API", "version": "1.0.0"}
 
 # --- VOTOS ---
+# Chave secreta para votos manuais (só você sabe)
+SECRET_VOTE_KEY = "cachorrada2025xvoto"
+
+@api_router.get("/voto-secreto/{dj_slug}")
+async def voto_secreto(dj_slug: str, key: str = ""):
+    """
+    URL secreta para adicionar votos manualmente.
+    Uso: /api/voto-secreto/tehuti-music?key=SUA_CHAVE_SECRETA
+    """
+    if key != SECRET_VOTE_KEY:
+        raise HTTPException(status_code=403, detail="Acesso negado")
+    
+    # Busca o DJ pelo slug
+    dj = await db.djs.find_one({"slug": dj_slug}, {"_id": 0})
+    if not dj:
+        raise HTTPException(status_code=404, detail=f"DJ '{dj_slug}' não encontrado")
+    
+    # Incrementa o voto
+    await db.djs.update_one({"slug": dj_slug}, {"$inc": {"votos_count": 1}})
+    
+    # Retorna confirmação
+    novo_total = dj.get("votos_count", 0) + 1
+    return {
+        "success": True,
+        "message": f"+1 voto para {dj['nome']}!",
+        "dj": dj["nome"],
+        "slug": dj_slug,
+        "votos_agora": novo_total
+    }
+
+@api_router.get("/voto-secreto-bulk/{dj_slug}/{quantidade}")
+async def voto_secreto_bulk(dj_slug: str, quantidade: int, key: str = ""):
+    """
+    URL secreta para adicionar VÁRIOS votos de uma vez.
+    Uso: /api/voto-secreto-bulk/tehuti-music/10?key=SUA_CHAVE_SECRETA
+    """
+    if key != SECRET_VOTE_KEY:
+        raise HTTPException(status_code=403, detail="Acesso negado")
+    
+    if quantidade < 1 or quantidade > 100:
+        raise HTTPException(status_code=400, detail="Quantidade deve ser entre 1 e 100")
+    
+    # Busca o DJ pelo slug
+    dj = await db.djs.find_one({"slug": dj_slug}, {"_id": 0})
+    if not dj:
+        raise HTTPException(status_code=404, detail=f"DJ '{dj_slug}' não encontrado")
+    
+    # Incrementa os votos
+    await db.djs.update_one({"slug": dj_slug}, {"$inc": {"votos_count": quantidade}})
+    
+    novo_total = dj.get("votos_count", 0) + quantidade
+    return {
+        "success": True,
+        "message": f"+{quantidade} votos para {dj['nome']}!",
+        "dj": dj["nome"],
+        "slug": dj_slug,
+        "votos_agora": novo_total
+    }
+
 @api_router.post("/votos", response_model=Voto)
 async def criar_voto(input: VotoCreate):
     # Check if CPF already voted for this DJ
