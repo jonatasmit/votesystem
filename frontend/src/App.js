@@ -4,16 +4,138 @@ import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import Marquee from "react-fast-marquee";
 import { Toaster, toast } from "sonner";
-import { Volume2, VolumeX, Instagram, ChevronDown, MapPin, Calendar, Clock, Users, Music, Zap, ArrowRight } from "lucide-react";
+import { Volume2, VolumeX, Instagram, ChevronDown, MapPin, Clock, Zap, ArrowRight } from "lucide-react";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+// Backend URL - usa Emergent se disponível
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "";
+const API = BACKEND_URL ? `${BACKEND_URL}/api` : null;
 
 const WHATSAPP_NUMBER = "5521972232170";
 const LOGO_URL = "https://customer-assets.emergentagent.com/job_cf83a940-d7dd-4a2a-b1d7-b5350862253d/artifacts/ia7e6z10_AB554670-F09D-4814-9E72-AEAD33654EC7.jpeg";
 const BG_URL = "https://customer-assets.emergentagent.com/job_cf83a940-d7dd-4a2a-b1d7-b5350862253d/artifacts/4e3g8cul_IMG_0359.png";
-// Using the video file as audio source - browsers can extract audio from video containers
 const AUDIO_URL = "https://customer-assets.emergentagent.com/job_cachorrada-vote/artifacts/30jm4hwl_2d8da123-c8ea-4e2f-a392-42d298f4e176.mov";
+
+// DADOS ESTÁTICOS - Usados quando API não está disponível (ex: Vercel)
+const STATIC_DJS = [
+  {
+    id: "1",
+    nome: "TehuTi Music",
+    slug: "tehuti-music",
+    foto: "https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?auto=format&fit=crop&w=400&q=80",
+    bio: "O mestre do eletrofunk que está dominando as pistas! Com mais de 470 seguidores no SoundCloud e sets explosivos como 'Baile do Tehuti 2.0' com mais de 1.000 plays, TehuTi Music traz energia pura em cada batida. Seus sets são reconhecidos pelos fãs como 'seleção das brabas' - é o DJ que faz até o avô dançar!",
+    instagram: "tehuti_music",
+    soundcloud: "thiago-feijao",
+    keywords: ["cachorrada eletrônica", "eletrofunk pesado", "baile do tehuti", "dj cachorrada"],
+    votos_count: 0,
+    percentual: 0
+  },
+  {
+    id: "2",
+    nome: "K-rol",
+    slug: "k-rol-music",
+    foto: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&q=80",
+    bio: "A braba da pista que não entrega só música, entrega energia! Com quase 5.000 plays no set 'K-ROL @ 001 Call The Police', K-rol é referência no Tech House com alma brasileira. Cada faixa carrega sua essência - transições pensadas, energia colocada com intenção. É ritmo pra mexer o corpo e marcar momentos!",
+    instagram: "k_rolmusic",
+    soundcloud: "krolmusic",
+    keywords: ["tech house", "eletronica", "k-rol music", "set 2025"],
+    votos_count: 0,
+    percentual: 0
+  },
+  {
+    id: "3",
+    nome: "Jhonny Mixer",
+    slug: "jhonny-mixer",
+    foto: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=400&q=80",
+    bio: "O cara da cachorrada sem mimimi! Com mais de 3.400 plays no set 'Cachorrada 02 Sem Mimimi', Jhonny Mixer é pura marreta do Thor nas pistas. Sets que são sonzeira monstruosa - gravados com pressão mas que a galera vai gostar. Eletrofunk raiz que não tem erro!",
+    instagram: "jhonny_mixer__oficial",
+    soundcloud: "jhonny-dj-681789610",
+    keywords: ["eletrofunk", "cachorrada", "sem mimimi", "marreta"],
+    votos_count: 0,
+    percentual: 0
+  }
+];
+
+const STATIC_EVENTOS = [
+  {
+    id: "1",
+    titulo: "BAILE DA CACHORRADA ELETRÔNICA",
+    data: "15/02/2025",
+    horario: "23:00",
+    local: "A definir",
+    cidade: "Rio de Janeiro",
+    estado: "RJ",
+    descricao: "O baile que vai reunir os maiores DJs da cachorrada eletrônica! TehuTi, K-rol e Jhonny Mixer juntos em uma noite inesquecível de eletrofunk pesado.",
+    preco: "PIX 124.914.837-50",
+    whatsapp_mensagem: "Olá! Quero participar do BAILE DA CACHORRADA ELETRÔNICA! Vim pelo site eletrofunkcachorrada.com.br"
+  },
+  {
+    id: "2",
+    titulo: "CALL THE POLICE - K-ROL NIGHT",
+    data: "01/03/2025",
+    horario: "22:00",
+    local: "A definir",
+    cidade: "São Paulo",
+    estado: "SP",
+    descricao: "Uma noite especial com K-rol apresentando o set completo 'Call The Police'. Tech House com alma brasileira que vai fazer todo mundo chamar a polícia!",
+    preco: "PIX 124.914.837-50",
+    whatsapp_mensagem: "Olá! Quero participar da CALL THE POLICE - K-ROL NIGHT! Vim pelo site eletrofunkcachorrada.com.br"
+  },
+  {
+    id: "3",
+    titulo: "BAILE DO TEHUTI 3.0",
+    data: "15/03/2025",
+    horario: "00:00",
+    local: "A definir",
+    cidade: "Rio de Janeiro",
+    estado: "RJ",
+    descricao: "TehuTi Music apresenta a terceira edição do baile que é sucesso absoluto! Prepara que vem seleção das brabas - o set que faz até o avô dançar!",
+    preco: "PIX 124.914.837-50",
+    whatsapp_mensagem: "Olá! Quero participar do BAILE DO TEHUTI 3.0! Vim pelo site eletrofunkcachorrada.com.br"
+  }
+];
+
+const STATIC_ARTIGOS = [
+  {
+    id: "1",
+    titulo: "TehuTi Music: O DJ que Faz Até o Avô Dançar",
+    slug: "tehuti-music-dj-eletrofunk",
+    resumo: "Conheça TehuTi Music, o mestre do eletrofunk que está conquistando as pistas com o Baile do Tehuti 2.0.",
+    keywords: ["tehuti music", "baile do tehuti", "eletrofunk"],
+    imagem: "https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    id: "2",
+    titulo: "K-rol: A Braba do Tech House Brasileiro",
+    slug: "k-rol-tech-house-brasileiro",
+    resumo: "Descubra K-rol, a DJ que entrega energia pura em forma de batida. Set 'Call The Police' com quase 5.000 plays.",
+    keywords: ["k-rol music", "tech house", "call the police"],
+    imagem: "https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    id: "3",
+    titulo: "Jhonny Mixer: Cachorrada Sem Mimimi",
+    slug: "jhonny-mixer-cachorrada-sem-mimimi",
+    resumo: "Jhonny Mixer é o cara da marreta! Com mais de 3.400 plays no set 'Cachorrada 02 Sem Mimimi'.",
+    keywords: ["jhonny mixer", "cachorrada", "eletrofunk"],
+    imagem: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    id: "4",
+    titulo: "O que é Cachorrada Eletrônica? Guia Completo 2025",
+    slug: "o-que-e-cachorrada-eletronica",
+    resumo: "Entenda o gênero que está dominando as raves brasileiras. Da origem ao som atual.",
+    keywords: ["cachorrada eletrônica", "eletrofunk", "funk rave"],
+    imagem: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    id: "5",
+    titulo: "Melhores Sets de Eletrofunk 2025",
+    slug: "melhores-sets-eletrofunk-2025",
+    resumo: "Os sets que estão bombando: Baile do Tehuti 2.0, K-ROL @ 001 Call The Police e mais!",
+    keywords: ["playlist eletrofunk", "sets 2025", "cachorrada"],
+    imagem: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
+  }
+];
 
 const ESTADOS = [
   "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
@@ -49,20 +171,27 @@ function App() {
   const [audioError, setAudioError] = useState(false);
 
   useEffect(() => {
-    initData();
     fetchData();
   }, []);
 
-  const initData = async () => {
-    try {
-      await axios.post(`${API}/seed`);
-    } catch (e) {
-      // Data might already exist
-    }
-  };
-
   const fetchData = async () => {
+    // Se não tem API configurada, usa dados estáticos
+    if (!API) {
+      setDjs(STATIC_DJS);
+      setEventos(STATIC_EVENTOS);
+      setArtigos(STATIC_ARTIGOS);
+      setRanking({ djs: STATIC_DJS, total_votos: 0 });
+      return;
+    }
+
     try {
+      // Tenta fazer seed primeiro (ignora erro se já existir)
+      try {
+        await axios.post(`${API}/seed`);
+      } catch (e) {
+        // Ignora - dados já existem
+      }
+
       const [djsRes, eventosRes, artigosRes, rankingRes] = await Promise.all([
         axios.get(`${API}/djs`),
         axios.get(`${API}/eventos`),
@@ -74,7 +203,12 @@ function App() {
       setArtigos(artigosRes.data);
       setRanking(rankingRes.data);
     } catch (e) {
-      console.error("Error fetching data:", e);
+      console.error("API Error - usando dados estáticos:", e);
+      // Fallback para dados estáticos
+      setDjs(STATIC_DJS);
+      setEventos(STATIC_EVENTOS);
+      setArtigos(STATIC_ARTIGOS);
+      setRanking({ djs: STATIC_DJS, total_votos: 0 });
     }
   };
 
@@ -125,6 +259,21 @@ function App() {
     if (!selectedDj) return;
 
     setIsSubmitting(true);
+    
+    // Se não tem API, redireciona para WhatsApp
+    if (!API) {
+      const msg = encodeURIComponent(`Olá! Quero votar no DJ ${selectedDj.nome}!\n\nMeus dados:\nNome: ${voteForm.nome}\nEmail: ${voteForm.email}\nWhatsApp: ${voteForm.whatsapp}\nEstado: ${voteForm.estado}\n\nVim pelo site eletrofunkcachorrada.com.br`);
+      window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${msg}`, '_blank');
+      toast.success(`Redirecionando para WhatsApp para votar em ${selectedDj.nome}!`, {
+        description: "Complete seu voto pelo WhatsApp",
+        style: { background: '#121212', border: '1px solid #25D366', color: '#fff' }
+      });
+      setShowVoteModal(false);
+      setVoteForm({ nome: "", cpf: "", email: "", whatsapp: "", estado: "" });
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       await axios.post(`${API}/votos`, {
         ...voteForm,
