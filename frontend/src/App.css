@@ -1,34 +1,213 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* INWO Game Styles */
+
+.glass-card {
+    backdrop-filter: blur(24px);
+    background: rgba(4, 9, 6, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.quiz-card {
+    background: #0A180E;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.05);
+    transition: all 0.5s ease;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
+.quiz-card:hover {
+    box-shadow: 0 0 40px rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+.nav-floating {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    backdrop-filter: blur(24px);
+    background: rgba(4, 9, 6, 0.7);
+    border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+/* Button styles */
+.btn-primary {
+    background: #10B981;
+    color: #040906;
+    font-weight: 700;
+    letter-spacing: 0.025em;
+    border: 2px solid #10B981;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #34D399;
+    border-color: #34D399;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #10B981;
+    border: 2px solid #10B981;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.btn-accent {
+    background: #F59E0B;
+    color: #040906;
+    font-weight: 700;
+    border: 2px solid #F59E0B;
+    transition: all 0.3s ease;
+}
+
+.btn-accent:hover {
+    background: #FBBF24;
+    border-color: #FBBF24;
+}
+
+/* Input styles */
+.input-dark {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(16, 185, 129, 0.3);
     color: white;
+    padding: 1rem;
+    width: 100%;
+    transition: all 0.3s ease;
 }
 
-.App-link {
-    color: #61dafb;
+.input-dark::placeholder {
+    color: #6B7280;
 }
 
-@keyframes App-logo-spin {
+.input-dark:focus {
+    border-color: #10B981;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+/* Card hover effect */
+.card-hover {
+    transition: all 0.5s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px -10px rgba(16, 185, 129, 0.3);
+}
+
+/* Prize card */
+.prize-card {
+    background: linear-gradient(135deg, #0A180E 0%, #08120A 100%);
+    border: 2px solid #F59E0B;
+    position: relative;
+    overflow: hidden;
+}
+
+.prize-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
     from {
         transform: rotate(0deg);
     }
     to {
         transform: rotate(360deg);
     }
+}
+
+/* Option button for quiz */
+.option-btn {
+    background: rgba(10, 24, 14, 0.8);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: #F3F4F6;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.option-btn:hover {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.5);
+    transform: translateX(8px);
+}
+
+.option-btn.selected {
+    background: rgba(16, 185, 129, 0.2);
+    border-color: #10B981;
+}
+
+.option-btn.correct {
+    background: rgba(16, 185, 129, 0.3);
+    border-color: #10B981;
+}
+
+.option-btn.incorrect {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: #EF4444;
+}
+
+/* Progress bar */
+.progress-bar {
+    background: rgba(16, 185, 129, 0.1);
+    height: 8px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #10B981, #34D399);
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+/* Leaderboard */
+.leaderboard-row {
+    background: rgba(10, 24, 14, 0.5);
+    border: 1px solid rgba(16, 185, 129, 0.1);
+    transition: all 0.3s ease;
+}
+
+.leaderboard-row:hover {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.leaderboard-row.top-3 {
+    border-color: rgba(245, 158, 11, 0.5);
+}
+
+/* Hero section */
+.hero-gradient {
+    background: linear-gradient(180deg, 
+        rgba(4, 9, 6, 0) 0%, 
+        rgba(4, 9, 6, 0.8) 50%, 
+        rgba(4, 9, 6, 1) 100%
+    );
+}
+
+/* Text gradient */
+.text-gradient {
+    background: linear-gradient(90deg, #10B981, #34D399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-gradient-gold {
+    background: linear-gradient(90deg, #F59E0B, #FBBF24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
