@@ -471,10 +471,21 @@ const QuizGame = ({ participant, onComplete }) => {
     }
   };
 
-  const copyPrizeCode = () => {
+  const copyPrizeCode = async () => {
     if (prize?.code) {
-      navigator.clipboard.writeText(prize.code);
-      toast.success("Código copiado!");
+      try {
+        await navigator.clipboard.writeText(prize.code);
+        toast.success("Código copiado!");
+      } catch (e) {
+        // Fallback for clipboard permission issues
+        const textArea = document.createElement('textarea');
+        textArea.value = prize.code;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        toast.success("Código copiado!");
+      }
     }
   };
 
