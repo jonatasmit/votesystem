@@ -1,0 +1,114 @@
+{
+  "theme": "dark",
+  "archetype": "Archetype 5 (Jewel & Luxury) mixed with Archetype 7 elements. Deep mysterious conspiracy theme merged with high-performance supplement branding.",
+  "colors": {
+    "background": {
+      "base": "#040906",
+      "surface": "#08120A",
+      "card": "#0A180E",
+      "floating_nav": "rgba(4, 9, 6, 0.7)"
+    },
+    "primary": {
+      "default": "#10B981", 
+      "hover": "#34D399",
+      "glow": "rgba(16, 185, 129, 0.5)",
+      "foreground": "#040906"
+    },
+    "accent": {
+      "default": "#F59E0B",
+      "hover": "#FBBF24",
+      "foreground": "#040906"
+    },
+    "text": {
+      "primary": "#F3F4F6",
+      "secondary": "#9CA3AF",
+      "muted": "#4B5563",
+      "error": "#EF4444"
+    },
+    "borders": {
+      "default": "rgba(16, 185, 129, 0.15)",
+      "highlight": "rgba(16, 185, 129, 0.4)",
+      "muted": "rgba(255, 255, 255, 0.05)"
+    }
+  },
+  "typography": {
+    "heading_font": "Cabinet Grotesk",
+    "body_font": "IBM Plex Sans",
+    "scales": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tighter font-black",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight font-bold",
+      "h3": "text-xl sm:text-2xl font-semibold",
+      "body": "text-base leading-relaxed",
+      "small": "text-sm uppercase tracking-[0.2em] font-medium"
+    }
+  },
+  "spacing_and_layout": {
+    "container_padding": "p-6 md:p-12 lg:p-16",
+    "section_gap": "gap-24 md:gap-32",
+    "grid_bento": "grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-8",
+    "grid_dashboard": "grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6",
+    "card_padding": "p-8 md:p-12"
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#10B981] text-[#040906] font-bold tracking-wide rounded-none border-2 border-[#10B981] hover:bg-[#34D399] hover:border-[#34D399] transition-all duration-300",
+      "outline": "bg-transparent text-[#10B981] border-2 border-[#10B981] hover:bg-[#10B981]/10 rounded-none transition-all duration-300",
+      "accent": "bg-[#F59E0B] text-[#040906] font-bold tracking-wide rounded-none border-2 border-[#F59E0B] hover:bg-[#FBBF24] transition-all duration-300"
+    },
+    "cards": {
+      "quiz_card": "bg-[#0A180E] border border-[#10B981]/20 p-8 shadow-[0_0_20px_rgba(16,185,129,0.05)] hover:shadow-[0_0_40px_rgba(16,185,129,0.15)] hover:border-[#10B981]/40 transition-all duration-500 rounded-sm",
+      "dashboard_widget": "bg-[#08120A] border border-white/5 p-6 rounded-sm"
+    },
+    "inputs": {
+      "default": "bg-black/50 border border-[#10B981]/30 text-white placeholder-gray-500 focus:border-[#10B981] focus:ring-1 focus:ring-[#10B981] rounded-none p-4 w-full transition-colors"
+    },
+    "navigation": "fixed top-0 w-full z-50 backdrop-blur-2xl bg-[#040906]/70 border-b border-[#10B981]/10",
+    "glassmorphism": "backdrop-blur-2xl bg-[#040906]/60 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+  },
+  "motion_and_effects": {
+    "hover_lift": "hover:-translate-y-2 hover:shadow-[0_15px_40px_-10px_rgba(16,185,129,0.3)] transition-all duration-500",
+    "glow_pulse": "animate-pulse shadow-[0_0_25px_rgba(16,185,129,0.4)]",
+    "page_transition": "opacity-0 translate-y-8 to opacity-100 translate-y-0 duration-700 ease-out"
+  },
+  "media": {
+    "hero_background": {
+      "url": "https://images.unsplash.com/photo-1707346310176-52f43d7606ea?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHwzfHxkYXJrJTIwYWJzdHJhY3QlMjBteXN0ZXJpb3VzJTIwZ3JlZW4lMjBnb2xkJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3NzQ5MDI0Nzh8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Dark green abstract wavy background for the landing page hero."
+    },
+    "card_texture": {
+      "url": "https://images.pexels.com/photos/19889188/pexels-photo-19889188.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Dark green metallic abstract texture for card backs and atmospheric elements."
+    },
+    "prizes": [
+      {
+        "name": "Whey Protein Suplementos Mais Baratos",
+        "url": "https://images.unsplash.com/photo-1693996045300-521e9d08cabc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHwxfHx3aGV5JTIwcHJvdGVpbiUyMHR1YiUyMGZpdG5lc3MlMjBzdXBwbGVtZW50fGVufDB8fHx8MTc3NDkwMjQ2OXww&ixlib=rb-4.1.0&q=85",
+        "description": "Premium whey protein tub representing the grand prize."
+      },
+      {
+         "name": "Creatine Pot",
+         "url": "https://images.unsplash.com/photo-1693996045899-7cf0ac0229c7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHwyfHx3aGV5JTIwcHJvdGVpbiUyMHR1YiUyMGZpdG5lc3MlMjBzdXBwbGVtZW50fGVufDB8fHx8MTc3NDkwMjQ2OXww&ixlib=rb-4.1.0&q=85",
+         "description": "Creatine supplement jar for secondary prizes."
+      }
+    ]
+  },
+  "libraries": [
+    "@phosphor-icons/react",
+    "framer-motion",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "accessibility": {
+    "contrast_strategy": "Ensure text over background images always has a dark overlay gradient (e.g., bg-black/60). Hover states must shift contrast visibly by increasing brightness.",
+    "testing_attributes": "All interactive and key informational elements MUST include a 'data-testid' attribute (e.g., data-testid='submit-registration-btn', data-testid='quiz-answer-A')."
+  },
+  "instructions_to_main_agent": [
+    "Use pure HTML/Tailwind for the landing page to achieve maximum asymmetry and 'Godly.website' style overlapping. Do not use standard Shadcn containers for the marketing sections.",
+    "For the admin panel and quiz interaction components, use Shadcn UI but heavily customize them. Strip away the generic 'Vercel' appearance. Change border-radius to `rounded-none` or `rounded-sm`.",
+    "Embrace the 'Retro-Futurism/Terminal' look mixed with Luxury: Use sharp corners, dark backgrounds, high-contrast borders (rgba(16, 185, 129, 0.4)), and subtle glows.",
+    "The quiz cards MUST feel tactile. Use framer-motion to create subtle 3D hover effects (`rotateX`, `rotateY`, `translateZ`) as players hover over answers.",
+    "Implement an explicit `data-testid` on every single button, link, form input, and structural section to ensure testability.",
+    "Do NOT use 'Inter' font. Import and use 'Cabinet Grotesk' for headings and 'IBM Plex Sans' for body text via Google Fonts/Fontshare.",
+    "Never center text blindly; default to left-alignment for body and input labels to maintain the raw, technical visual language."
+  ]
+}
